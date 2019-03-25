@@ -1,2 +1,6 @@
 # binary
 204ducks
+
+# sublime-text
+*.sublime-project
+*.sublime-workspace
