@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"os"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	a := parseArgv(os.Args[1:])
+	// var a float64 = parseArgv(os.Args[1:])
+
+	fmt.Println("a:", a)
 }

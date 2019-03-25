@@ -5,7 +5,8 @@
 ## Makefile for 204ducks.
 ##
 
-SRC		=	main.go
+SRC		=	main.go			\
+			parseArgv.go
 
 SRC		:=	$(addprefix src/, $(SRC))
 
