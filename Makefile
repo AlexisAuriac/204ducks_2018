@@ -11,7 +11,7 @@ SRC		:=	$(addprefix src/, $(SRC))
 
 NAME	=	204ducks
 
-all:	$(NAME)
+all: $(NAME)
 
 $(NAME): $(SRC)
 	go build -o $(NAME) $(SRC)
