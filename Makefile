@@ -6,7 +6,8 @@
 ##
 
 SRC		=	main.go			\
-			parseArgv.go
+			parseArgv.go	\
+			utility.go
 
 SRC		:=	$(addprefix src/, $(SRC))
 
