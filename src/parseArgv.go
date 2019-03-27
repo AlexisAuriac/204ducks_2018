@@ -1,8 +1,8 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"regexp"
 	"strconv"
 )
@@ -15,7 +15,7 @@ func usage() {
 	fmt.Println("\ta\t\tconstant")
 }
 
-func parseArgv(argv[] string) (float64) {
+func parseArgv(argv []string) float64 {
 	if len(argv) != 1 {
 		fmt.Fprintln(os.Stderr, "Invalid number of arguments")
 		os.Exit(84)
