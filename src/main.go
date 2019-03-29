@@ -35,7 +35,7 @@ func FindTimeProportionDucksBack(a float64, p float64) uint {
 	for i := uint(0); ; i++ {
 		diff = math.Abs(p - ProbDensity(a, float64(i)/60))
 		if diff > lastDiff {
-			return i
+			return i - 1
 		}
 		lastDiff = diff
 	}
