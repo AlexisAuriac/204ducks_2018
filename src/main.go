@@ -48,7 +48,7 @@ func main() {
 	fmt.Printf("Time after which 50%% of the ducks are back: %dm %02ds\n",
 		t/60, t%60)
 	t = FindTimeProportionDucksBack(a, 0.99)
-	fmt.Printf("Time after which 50%% of the ducks are back: %dm %02ds\n",
+	fmt.Printf("Time after which 99%% of the ducks are back: %dm %02ds\n",
 		t/60, t%60)
 
 	fmt.Printf("Percentage of ducks back after 1 minute: %.1f%%\n",
