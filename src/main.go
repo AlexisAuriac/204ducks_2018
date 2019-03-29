@@ -53,6 +53,6 @@ func main() {
 
 	fmt.Printf("Percentage of ducks back after 1 minute: %.1f%%\n",
 		ProbDensity(a, 1)*100)
-	fmt.Printf("Percentage of ducks back after 2 minute: %.1f%%\n",
+	fmt.Printf("Percentage of ducks back after 2 minutes: %.1f%%\n",
 		ProbDensity(a, 2)*100)
 }
