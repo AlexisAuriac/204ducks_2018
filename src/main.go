@@ -41,10 +41,48 @@ func FindTimeProportionDucksBack(a float64, p float64) uint {
 	}
 }
 
+// func MeanDucks(a float64) float64 {
+// 	var result float64 = 0
+
+// 	for i := float64(0); i < 10000; i++ {
+// 		result += DuckReturnProb(a, i)
+// 	}
+
+// 	return result / 10000
+// }
+
+// func MeanDucks(a float64, tmax float64) float64 {
+// 	return (1 / (tmax - 0)) * ProbDensity(a, tmax)
+// }
+
+// Computes the mean of the integral.
+// Divides each minute by 1000 to increase precision.
+func MeanDucks(a float64) uint {
+	var totP float64 = 0
+	var mean float64 = 0
+	// t: time in milliseconds
+	var t float64 = 0
+
+	for totP < 999 {
+		tmpP := DuckReturnProb(a, t)
+		totP += tmpP
+		mean += tmpP * t
+		t += 0.001
+	}
+	// 'milliminutes' to minutes
+	mean /= 1000
+	// minutes to seconds
+	mean *= 60
+	return uint(math.Ceil(mean))
+}
+
 func main() {
 	var a float64 = parseArgv(os.Args[1:])
 
-	var t uint = FindTimeProportionDucksBack(a, 0.5)
+	mean := MeanDucks(a)
+	fmt.Printf("Average return time: %dm %02ds\n", mean/60, mean%60)
+
+	t := FindTimeProportionDucksBack(a, 0.5)
 	fmt.Printf("Time after which 50%% of the ducks are back: %dm %02ds\n",
 		t/60, t%60)
 	t = FindTimeProportionDucksBack(a, 0.99)
