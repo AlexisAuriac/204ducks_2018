@@ -5,9 +5,13 @@
 ## Makefile for 204ducks.
 ##
 
-SRC		=	main.go			\
-			parseArgv.go	\
-			utility.go
+SRC		=	main.go					\
+			parseArgv.go			\
+			utility.go				\
+			meanDucks.go			\
+			stdDevDucks.go			\
+			findTimeDucksBack.go
+
 
 SRC		:=	$(addprefix src/, $(SRC))
 
