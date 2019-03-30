@@ -41,36 +41,20 @@ func FindTimeProportionDucksBack(a float64, p float64) uint {
 	}
 }
 
-// func MeanDucks(a float64) float64 {
-// 	var result float64 = 0
-
-// 	for i := float64(0); i < 10000; i++ {
-// 		result += DuckReturnProb(a, i)
-// 	}
-
-// 	return result / 10000
-// }
-
-// func MeanDucks(a float64, tmax float64) float64 {
-// 	return (1 / (tmax - 0)) * ProbDensity(a, tmax)
-// }
-
 // Computes the mean of the integral.
 // Divides each minute by 1000 to increase precision.
-func MeanDucks(a float64) uint {
-	var totP float64 = 0
+func MeanDucks(a float64, tmax float64) uint {
+	var inc float64 = 0.001
 	var mean float64 = 0
 	// t: time in milliseconds
 	var t float64 = 0
 
-	for totP < 999 {
-		tmpP := DuckReturnProb(a, t)
-		totP += tmpP
-		mean += tmpP * t
-		t += 0.001
+	for t < tmax {
+		mean += DuckReturnProb(a, t) * t
+		t += inc
 	}
 	// 'milliminutes' to minutes
-	mean /= 1000
+	mean /= 1 / inc
 	// minutes to seconds
 	mean *= 60
 	return uint(math.Ceil(mean))
@@ -79,15 +63,16 @@ func MeanDucks(a float64) uint {
 func main() {
 	var a float64 = parseArgv(os.Args[1:])
 
-	mean := MeanDucks(a)
+	var t50 uint = FindTimeProportionDucksBack(a, 0.5)
+	var tMax uint = FindTimeProportionDucksBack(a, 0.99)
+	var mean uint = MeanDucks(a, float64(tMax))
+
 	fmt.Printf("Average return time: %dm %02ds\n", mean/60, mean%60)
 
-	t := FindTimeProportionDucksBack(a, 0.5)
 	fmt.Printf("Time after which 50%% of the ducks are back: %dm %02ds\n",
-		t/60, t%60)
-	t = FindTimeProportionDucksBack(a, 0.99)
+		t50/60, t50%60)
 	fmt.Printf("Time after which 99%% of the ducks are back: %dm %02ds\n",
-		t/60, t%60)
+		tMax/60, tMax%60)
 
 	fmt.Printf("Percentage of ducks back after 1 minute: %.1f%%\n",
 		ProbDensity(a, 1)*100)
