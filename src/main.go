@@ -41,8 +41,7 @@ func FindTimeProportionDucksBack(a float64, p float64) uint {
 	}
 }
 
-// Computes the mean of the integral.
-// Divides each minute by 1000 to increase precision.
+// Computes the mean of the integral in seconds.
 func MeanDucks(a float64, tmax float64) uint {
 	var inc float64 = 0.001
 	var mean float64 = 0
@@ -53,11 +52,31 @@ func MeanDucks(a float64, tmax float64) uint {
 		mean += DuckReturnProb(a, t) * t
 		t += inc
 	}
-	// 'milliminutes' to minutes
+
+	// accounting for the augmentation of values
+	// threw the fragmentation of minutes
 	mean /= 1 / inc
 	// minutes to seconds
 	mean *= 60
 	return uint(math.Ceil(mean))
+}
+
+// Computes the standard deviation of the integral in minutes.
+func StdDevDucks(a float64, tmax float64, mean uint) float64 {
+	var inc float64 = 0.001
+	var variance float64 = 0
+	var t float64 = 0
+	var mean2 float64 = float64(mean) / 60
+
+	for t < tmax {
+		variance += DuckReturnProb(a, t) * math.Pow(t-mean2, 2)
+		t += inc
+	}
+
+	// accounting for the augmentation of values
+	// threw the fragmentation of minutes
+	variance /= 1 / inc
+	return math.Sqrt(variance)
 }
 
 func main() {
@@ -66,8 +85,10 @@ func main() {
 	var t50 uint = FindTimeProportionDucksBack(a, 0.5)
 	var tMax uint = FindTimeProportionDucksBack(a, 0.99)
 	var mean uint = MeanDucks(a, float64(tMax))
+	var stdDev float64 = StdDevDucks(a, float64(tMax), mean)
 
 	fmt.Printf("Average return time: %dm %02ds\n", mean/60, mean%60)
+	fmt.Printf("Standard deviation: %.3f\n", stdDev)
 
 	fmt.Printf("Time after which 50%% of the ducks are back: %dm %02ds\n",
 		t50/60, t50%60)
