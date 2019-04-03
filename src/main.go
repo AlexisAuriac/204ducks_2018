@@ -6,12 +6,12 @@ import (
 )
 
 func main() {
-	var a float64 = parseArgv(os.Args[1:])
+	var a = ParseArgv(os.Args[1:])
 
-	var t50 uint = FindTimeDucksBack(a, 0.5)
-	var tMax uint = FindTimeDucksBack(a, 0.99)
-	var mean uint = MeanDucks(a, float64(tMax))
-	var stdDev float64 = StdDevDucks(a, float64(tMax), mean)
+	var t50 = FindTimeDucksBack(a, 0.5)
+	var tMax = FindTimeDucksBack(a, 0.99)
+	var mean = MeanDucks(a, float64(tMax))
+	var stdDev = StdDevDucks(a, float64(tMax), mean)
 
 	fmt.Printf("Average return time: %dm %02ds\n", mean/60, mean%60)
 	fmt.Printf("Standard deviation: %.3f\n", stdDev)

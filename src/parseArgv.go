@@ -7,7 +7,10 @@ import (
 	"strconv"
 )
 
+// FAILURE is the constant representing the failure of the program
 const FAILURE int = 84
+
+// SUCCESS is the constant representing the success of the program
 const SUCCESS int = 0
 
 func usage() {
@@ -18,7 +21,8 @@ func usage() {
 	fmt.Println("\ta\t\tconstant")
 }
 
-func parseArgv(argv []string) float64 {
+// ParseArgv parses the arguments of the program and returns a constant
+func ParseArgv(argv []string) float64 {
 	if len(argv) != 1 {
 		fmt.Fprintln(os.Stderr, "Invalid number of arguments")
 		os.Exit(FAILURE)

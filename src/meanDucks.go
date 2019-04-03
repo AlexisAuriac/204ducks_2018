@@ -2,12 +2,12 @@ package main
 
 import "math"
 
-// Computes the mean of the integral in seconds.
+// MeanDucks computes the mean of the integral in seconds.
 func MeanDucks(a float64, tmax float64) uint {
-	var inc float64 = 0.001
-	var mean float64 = 0
+	var inc = 0.001
+	var mean = 0.0
 	// t: time in milliseconds
-	var t float64 = 0
+	var t = 0.0
 
 	for t < tmax {
 		mean += DuckReturnProb(a, t) * t

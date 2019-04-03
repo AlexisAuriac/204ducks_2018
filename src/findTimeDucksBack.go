@@ -2,7 +2,7 @@ package main
 
 import "math"
 
-// Takes a proportion of the ducks and returns the time in seconds
+// FindTimeDucksBack takes a proportion of the ducks and returns the time in seconds
 // before this proportion is back
 func FindTimeDucksBack(a float64, p float64) uint {
 	var diff float64
@@ -15,4 +15,5 @@ func FindTimeDucksBack(a float64, p float64) uint {
 		}
 		lastDiff = diff
 	}
+	return 0
 }
