@@ -16,7 +16,7 @@ func MeanDucks(a float64, tmax float64) uint {
 
 	// accounting for the augmentation of values
 	// threw the fragmentation of minutes
-	mean /= 1 / inc
+	mean *= inc
 	// minutes to seconds
 	mean *= 60
 	return uint(math.Ceil(mean))

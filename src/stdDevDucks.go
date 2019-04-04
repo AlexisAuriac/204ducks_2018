@@ -16,6 +16,6 @@ func StdDevDucks(a float64, tmax float64, mean uint) float64 {
 
 	// accounting for the augmentation of values
 	// threw the fragmentation of minutes
-	variance /= 1 / inc
+	variance *= inc
 	return math.Sqrt(variance)
 }
