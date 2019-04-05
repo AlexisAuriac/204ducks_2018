@@ -4,7 +4,7 @@ import "math"
 
 // MeanDucks computes the mean of the integral in seconds.
 func MeanDucks(a float64, tmax float64) uint {
-	var inc = 0.001
+	var inc = 0.0001
 	var mean = 0.0
 	// t: time in milliseconds
 	var t = 0.0
